@@ -100,7 +100,11 @@ def parse(fname):
         print(f"Warning: Replay file {fname} is of an older version, skipping...")
         return {}
 
-    headers = parse_replay_header(content)
+    try:
+        headers = parse_replay_header(content)
+    except Exception as e:
+        print(f"Error: Replay file {fname} could not be parsed at all, skipping...")
+        return {}
 
     return headers
 
