@@ -54,13 +54,9 @@ def parse_replay_header(content):
 
     headers['map_name'] = map_name
 
-
     player_data = get_player_data(decompressed[161: 161 + 432])
 
     for i in range(len(player_data)):
-
-        colour = read_int(buffer=decompressed, start_idx=593 + i*4)
-        print(f'Reading {i}: {colour}')
         player_data[i]['colour'] = read_int(buffer=decompressed, start_idx=593 + i*4)
 
     headers['player_info'] = player_data
